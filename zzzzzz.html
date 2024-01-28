@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CosmWasm Transactions</title>
+  <script src="https://cdn.jsdelivr.net/npm/terra.js@1.5.0/dist/terra.js"></script>
+</head>
+<body>
+  <h1>CosmWasm Transactions</h1>
+  <button id="fetchTransactions">Fetch Transactions</button>
+  <div id="transactionList"></div>
+
+  <script>
+    const terra = new Terra('https://rpc.cosvm.net');
+    const address = '0xc924b4349C075ddEb38048EE64704565580E9740';
+
+    document.getElementById('fetchTransactions').addEventListener('click', async () => {
+      try {
+        const txs = await terra.tx.txInfoAll(address);
+        const transactionListElement = document.getElementById('transactionList');
+        transactionListElement.innerHTML = ''; // Clear previous results
+
+        txs.forEach((tx, index) => {
+          const transactionElement = document.createElement('div');
+          transactionElement.innerHTML = `
+            <p><strong>Transaction ${index + 1}:</strong></p>
+            <p><strong>Hash:</strong> ${tx.txhash}</p>
+            <p><strong>From:</strong> ${tx.tx.from}</p>
+            <p><strong>To:</strong> ${tx.tx.to}</p>
+            <p><strong>Amount:</strong> ${tx.tx.value.amount} ${tx.tx.value.denom}</p>
+            <hr>
+          `;
+          transactionListElement.appendChild(transactionElement);
+        });
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    });
+  </script>
+</body>
+</html>
