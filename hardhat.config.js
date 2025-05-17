@@ -4,8 +4,8 @@ require("@nomiclabs/hardhat-ethers");
 const { API_URL, PRIVATE_KEY, COSVM_RPC_URL } = process.env;
 
 module.exports = {
-   solidity: "0.7.3",
-   defaultNetwork: "cosvm",
+   solidity: "0.8.18",
+   defaultNetwork: "hardhat",
    networks: {
       hardhat: {},
       cosvm: {
