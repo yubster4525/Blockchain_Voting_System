@@ -26,7 +26,7 @@ https://www.youtube.com/watch?v=oJgENg8aFBA
 
 
 #HOW TO RUN
-Install all packeges by command - npm install
+Install all packages by command - npm install
 Run neo4j by command (in bin folder of neo4j installed folder) - neo4j console 
 Run the nodejs code - npm run devStart
 
